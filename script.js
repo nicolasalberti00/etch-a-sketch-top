@@ -12,7 +12,7 @@ createGrid = () => {
       divRow = document.createElement('div');
       divRow.classList.add('grid-cell');
       tag = document.createElement('p');
-      text = document.createTextNode('Hello World');
+      text = document.createTextNode('hell');
       tag.appendChild(text);
       divRow.appendChild(tag);
       divCol.appendChild(divRow);
@@ -23,3 +23,14 @@ createGrid = () => {
 }
 
 createGrid();
+
+//Hover coloring effect
+function hoverColor(item, className) {
+  item.addEventListener('mouseenter', i => item.classList.add(className));
+  item.addEventListener('click', i => item.classList.remove(className));
+}
+
+for (let cell of document.querySelectorAll('.grid-cell')) {
+  hoverColor(cell, "color");
+}
+

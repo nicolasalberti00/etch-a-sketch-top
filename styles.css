@@ -1,12 +1,19 @@
 * {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
 }
 
 .grid {
   display: flex;
+  justify-content: center;
   border: solid 1px black;
-  margin: 5rem;
-  width: 960px;
+  margin: 3em;
+  max-width: 50rem;
 }
 
 .grid-col {
@@ -14,6 +21,9 @@
 }
 
 .grid-cell {
-  flex: 1;
   border: solid 1px red;
+}
+
+.color {
+  background-color: black;
 }
