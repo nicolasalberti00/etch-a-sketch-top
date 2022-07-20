@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+}
+
+.grid {
+  display: flex;
+  border: solid 1px black;
+  margin: 5rem;
+  width: 960px;
+}
+
+.grid-col {
+  flex: 1;
+}
+
+.grid-cell {
+  flex: 1;
+  border: solid 1px red;
+}
