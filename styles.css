@@ -4,24 +4,42 @@
   padding: 0;
 }
 
-.container {
+.head {
   display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+aside {
+  display: flex;
+  justify-content: center;
+}
+
+#sizeValue {
+  margin-top: 0.2em;
+  text-align: center;
+}
+
+#sliderS {
+  margin-top: 0.2em;
+  width: 11.8em;
+}
+
+main {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2em 1.5em 0 1.5em;
 }
 
 .grid {
-  display: flex;
-  justify-content: center;
-  border: solid 1px black;
-  margin: 3em;
-  max-width: 50rem;
+  display: grid;
+  width: 500px;
+  height: 500px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.grid-col {
-  flex: 1;
-}
-
-.grid-cell {
-  border: solid 1px red;
+.grid-element {
+  user-select: none;
 }
 
 .color {

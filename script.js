@@ -1,36 +1,62 @@
+const DEFAULT_SIZE = 16;
+
+let currentSize = DEFAULT_SIZE;
+
+function setSize(newSize) {
+  currentSize = newSize;
+}
+
 //Selected the container
-const container = document.querySelector('.container');
+const sizeSlider = document.getElementById('sliderS');
+const sizeValue = document.getElementById('sizeValue');
+const grid = document.getElementById('grid');
 
-//Creation of the divs
-createGrid = () => {
-  const grid = document.createElement('div');
-  grid.classList.add('grid');
-  for (let i = 0; i < 16; i++) {//cols
-    divCol = document.createElement('div');
-    divCol.classList.add('grid-col');
-    for (let j = 0; j < 16; j++) {
-      divRow = document.createElement('div');
-      divRow.classList.add('grid-cell');
-      tag = document.createElement('p');
-      text = document.createTextNode('hell');
-      tag.appendChild(text);
-      divRow.appendChild(tag);
-      divCol.appendChild(divRow);
-    }
-    grid.appendChild(divCol);
-  }
-  container.appendChild(grid);
-}
-
-createGrid();
-
+//Find values for the grid
+sizeSlider.onmousemove = (e) => updateValue(e.target.value);
+sizeSlider.onchange = (e) => changeGrid(e.target.value);
 //Hover coloring effect
-function hoverColor(item, className) {
-  item.addEventListener('mouseenter', i => item.classList.add(className));
-  item.addEventListener('click', i => item.classList.remove(className));
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmousedown = () => (mouseDown = false);
+
+
+function changeGrid(value) {
+  setSize(value);
+  updateValue(value);
+  reloadGrid();
 }
 
-for (let cell of document.querySelectorAll('.grid-cell')) {
-  hoverColor(cell, "color");
+function updateValue(value) {
+  sizeValue.innerHTML = `${value} x ${value}`;
+}
+function reloadGrid() {
+  clearGrid();
+  createGrid(currentSize);
 }
 
+function clearGrid() {
+  grid.innerHTML = '';
+}
+
+//Creation of the grid
+function createGrid(size) {
+  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  for (let i = 0; i < size * size; i++) {
+    const gridCell = document.createElement('div');
+    gridCell.classList.add('grid-cell');
+    gridCell.addEventListener('mouseover', changeColor);
+    gridCell.addEventListener('mousedown', changeColor);
+    grid.appendChild(gridCell);
+  }
+}
+
+function changeColor(e) {
+  if (e.type === 'mouseover' && !mouseDown) return
+  else {
+    e.target.style.backgroundColor = 'black';
+  }
+}
+
+
+createGrid(DEFAULT_SIZE);
